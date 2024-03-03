@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
 import auth_illustration from '../../assets/images/auth_illustration.png';
 
-const Registration = () => {
+const Login = () => {
+    
     return (
         <main
             className="flex min-h-screen items-center justify-center bg-deepDark py-8"
@@ -9,15 +11,14 @@ const Registration = () => {
                 <div className="container grid items-center gap-8 lg:grid-cols-2">
                     
                     <div>
-                        
                         <img
-                            className="mb-12 h-60"
+                            className="mb-12 max-w-full max-lg:hidden"
                             src={auth_illustration}
                             alt="auth_illustration"
                         />
                         <div>
-                            <h1 className="mb-3 text-4xl font-bold lg:text-[40px]">Social React</h1>
-                            <p className="max-w-[452px] text-gray-400/95 lg:text-lg">
+                            <h1 className="mb-3 text-4xl font-bold lg:text-[40px]">Social React Login</h1>
+                            <p className="max-w-[452px] text-gray-600/95 lg:text-lg">
                                 Create a social media app with features like, showing the post,
                                 post details, reactions, comments and profile.
                             </p>
@@ -25,12 +26,7 @@ const Registration = () => {
                     </div>
                     
                     <div className="card">
-                        <form className="border-b border-[#3F3F3F] pb-10 lg:pb-[30px]">
-                            
-                            <div className="form-control">
-                                <label className="auth-label" htmlFor="name">Name</label>
-                                <input className="auth-input" name="name" type="text" id="name" />
-                            </div>
+                        <form className="border-b border-[#3F3F3F] pb-10 lg:pb-[60px]">
                             
                             <div className="form-control">
                                 <label className="auth-label" htmlFor="email">Email</label>
@@ -43,7 +39,7 @@ const Registration = () => {
                             </div>
                             
                             <div className="form-control">
-                                <label className="auth-label" htmlFor="email">Password</label>
+                                <label className="auth-label" htmlFor="password">Password</label>
                                 <input
                                     className="auth-input"
                                     name="password"
@@ -52,33 +48,20 @@ const Registration = () => {
                                 />
                             </div>
                             
-                            <div className="form-control">
-                                <label className="auth-label" htmlFor="confirmPassword"
-                                >Retype Password</label
-                                >
-                                <input
-                                    className="auth-input"
-                                    name="confirmPassword"
-                                    type="password"
-                                    id="confirmPassword"
-                                />
-                            </div>
-                            
                             <button
                                 className="auth-input bg-lwsGreen font-bold text-deepDark transition-all hover:opacity-90"
                                 type="submit"
                             >
-                                Register
+                                Login
                             </button>
                         </form>
-                        <div className="py-4 lg:py-4">
+                        <div className="py-4 lg:py-6">
                             <p className="text-center text-xs text-gray-600/95 lg:text-sm">
-                                Already have an account?
-                                <a
-                                    className="hover:text-lwsGreen text-white transition-all hover:underline"
-                                    href="/login.html"
-                                >Login
-                                </a>
+                                Don’t have account?
+                                <Link
+                                    className="text-white transition-all hover:text-lwsGreen hover:underline"
+                                    to="/registration"
+                                >Create New</Link>
                             </p>
                         </div>
                     </div>
@@ -89,4 +72,4 @@ const Registration = () => {
     );
 };
 
-export default Registration;
+export default Login;
