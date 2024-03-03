@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import auth_illustration from '../../assets/icons/registration.svg';
+import RegistrationForm from '../../components/Auth/RegistrationForm';
 
 const Registration = () => {
 
@@ -27,7 +28,8 @@ const Registration = () => {
                     </div>
 
                     <div className="card">
-                        <form className="border-b border-[#3F3F3F] pb-10 lg:pb-[30px]">
+                        <RegistrationForm/>
+                        {/* <form className="border-b border-[#3F3F3F] pb-10 lg:pb-[30px]">
 
                             <div className="form-control">
                                 <label className="auth-label" htmlFor="name">Name</label>
@@ -72,7 +74,7 @@ const Registration = () => {
                             >
                                 Register
                             </button>
-                        </form>
+                        </form> */}
                         <div className="py-4 lg:py-4">
                             <p className="text-center text-xs text-gray-600/95 lg:text-sm">
                                 Already have an account?
