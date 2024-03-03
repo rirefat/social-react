@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import auth_illustration from '../../assets/images/auth_illustration.png';
+import auth_illustration from '../../assets/icons/registration.svg';
 
 const Registration = () => {
 
@@ -77,7 +77,7 @@ const Registration = () => {
                             <p className="text-center text-xs text-gray-600/95 lg:text-sm">
                                 Already have an account?
                                 <Link
-                                    className="hover:text-lwsGreen text-white transition-all hover:underline"
+                                    className="hover:text-lwsGreen text-white transition-all hover:underline mx-1"
                                     to="/login"
                                 >Login
                                 </Link>
