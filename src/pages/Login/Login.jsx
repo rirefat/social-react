@@ -4,6 +4,7 @@ import LoginForm from '../../components/Auth/LoginForm';
 
 const Login = () => {
     
+    
     return (
         <main
             className="flex min-h-screen items-center justify-center bg-deepDark py-8"

@@ -5,6 +5,7 @@ import Registration from "../pages/Registration/Registration";
 import Login from "../pages/Login/Login";
 import Homepage from "../pages/Homepage/Homepage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
+import PrivateRouters from "./PrivateRouters";
 
 const routers = createBrowserRouter([
     {
@@ -14,8 +15,8 @@ const routers = createBrowserRouter([
         children: [
             { index: true, element: <Homepage /> },
             { path: 'registration', element: <Registration /> },
-            { path: 'login', element: <Login/> },
-            { path: 'me', element: <ProfilePage/> },
+            { path: 'login', element: <Login /> },
+            { path: 'me', element: <PrivateRouters> <ProfilePage/> </PrivateRouters> },
         ]
     }
 ])

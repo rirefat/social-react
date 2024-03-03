@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../components/Contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 
 const Homepage = () => {
@@ -7,7 +8,8 @@ const Homepage = () => {
     console.log(auth)
     return (
         <div>
-            home page
+            <p>home page</p>
+            <Link to="/me">Profile Page</Link>
         </div>
     );
 };
