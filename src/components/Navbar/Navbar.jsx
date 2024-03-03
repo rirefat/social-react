@@ -1,4 +1,4 @@
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/socialReact-logo.png';
 import home from '../../assets/icons/home.svg';
 import notification from '../../assets/icons/notification.svg';
 import avatar from '../../assets//images/avatars/avatar_1.png';
