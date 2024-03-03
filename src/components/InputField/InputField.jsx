@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const InputField = ({ label, children, htmlFor, error }) => {
 
     const id = htmlFor || getChildId(children);

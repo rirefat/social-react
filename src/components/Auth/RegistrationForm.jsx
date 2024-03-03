@@ -1,13 +1,17 @@
 import { useForm } from "react-hook-form";
 import InputField from "../InputField/InputField";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/AuthContext";
 
 const RegistrationForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const {auth, setAuth} = useContext(AuthContext);
 
     const formSubmit = (data) => {
         console.log(data);
+        setAuth({auth})
         navigate('/login')
     }
 
