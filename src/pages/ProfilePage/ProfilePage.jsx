@@ -1,16 +1,46 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../components/Contexts/AuthContext";
 import dummyAvatar from '../../assets/images/dummy-avatar.png';
 import editIcon from '../../assets/icons/edit.svg';
 import UsersPostCard from "./UsersPostCard";
+import useAxios from "../../hooks/useAxios";
 
 const ProfilePage = () => {
+    const [user, setUser] = useState({});
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     const { auth } = useContext(AuthContext);
+    const { api } = useAxios();
 
-    const fullName = auth?.user?.firstName + " " + auth?.user?.lastName;
-    const email = auth?.user?.email;
-    const bio = auth?.user?.bio;
-    const avatar = auth?.user?.avatar;
+    useEffect(() => {
+        setLoading(true);
+        const fetchProfile = async () => {
+            try {
+                const response = await api.get(`${import.meta.env.VITE_SERVER_BASE_URL}/profile/${auth?.user?.id}`);
+                setUser(response?.data?.user);
+                setPosts(response?.data?.posts);
+            } catch (error) {
+                console.log(error);
+                setError(error);
+            }finally{
+                setLoading(false);
+            }
+        }
+
+        fetchProfile();
+    }, []);
+
+    console.log(posts)
+
+    const fullName = user?.firstName + " " + user?.lastName;
+    const email = user?.email;
+    const bio = user?.bio;
+    const avatar = user?.avatar;
+
+
+    if(loading) return <p className="text-center mt-10 text-green-400 text-2xl">Fetching user data...</p>
+    if(error) return <p className="text-center">Error occured fetching you data!!</p>
 
     return (
         <main className="mx-auto max-w-[1020px] py-8">
