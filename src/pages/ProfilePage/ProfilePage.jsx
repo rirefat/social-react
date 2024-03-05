@@ -34,7 +34,6 @@ const ProfilePage = () => {
     const fullName = user?.firstName + " " + user?.lastName;
     const email = user?.email;
     const bio = user?.bio;
-    const avatar = user?.avatar;
 
 
     if (loading) return <p className="text-center mt-10 text-slate-400 text-2xl">Fetching user data...</p>
@@ -82,9 +81,7 @@ const ProfilePage = () => {
                     <div className="w-3/4 border-b border-[#3F3F3F] py-6 lg:py-8"></div>
                 </div>
                 {/* <!-- end profile info --> */}
-
-                <h4 className="mt-6 text-xl lg:mt-8 lg:text-2xl">Your Posts</h4>
-
+                
                 {/* <!-- post  --> */}
                 {
                     posts.map((post) => (

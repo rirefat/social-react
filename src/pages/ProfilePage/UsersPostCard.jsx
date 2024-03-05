@@ -11,155 +11,158 @@ import articleThumbnail from '../../assets/images/poster.png';
 const UsersPostCard = ({ user, post }) => {
     const fullName = user?.firstName + " " + user?.lastName;
     return (
-        <article className="card mt-6 lg:mt-8">
-            {/* <!-- post header --> */}
-            <header className="flex items-center justify-between gap-4">
-                {/* <!-- author info --> */}
-                <div className="flex items-center gap-3">
-                    <img
-                        className="max-w-10 max-h-10 rounded-full lg:max-h-[58px] lg:max-w-[58px]"
-                        src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}` || dummyAvatar}
-                        alt={fullName}
-                    />
-                    <div>
-                        <h6 className="text-lg lg:text-xl">{fullName}</h6>
-                        <div className="flex items-center gap-1.5">
-                            <img src={timeIcon} alt="time" />
-                            <span className="text-sm text-gray-400 lg:text-base">12 min ago</span>
-                        </div>
-                    </div>
-                </div>
-                {/* <!-- author info ends --> */}
-
-                {/* <!-- action dot --> */}
-                <div className="relative">
-                    <button>
-                        <img src={threeDotIcon} alt="3dots of Action" />
-                    </button>
-
-                    {/* <!-- Action Menus Popup --> */}
-                    <div className="action-modal-container">
-                        <button className="action-menu-item hover:text-lwsGreen">
-                            <img src={editIcon} alt="Edit" />
-                            Edit
-                        </button>
-                        <button className="action-menu-item hover:text-red-500">
-                            <img src={deleteIcon} alt="Delete" />
-                            Delete
-                        </button>
-                    </div>
-                </div>
-                {/* <!-- action dot ends --> */}
-            </header>
-            {/* <!-- post header ends --> */}
-
-            {/* <!-- post body --> */}
-            <div className="border-b border-[#3F3F3F] py-4 lg:py-5 lg:text-xl">
-                {/* <!-- If Post has Image, Render this block --> */}
-                <div className="flex items-center justify-center overflow-hidden">
-                    <img
-                        className="max-w-full"
-                        src={`${import.meta.env.VITE_SERVER_BASE_URL}/${post?.image}`}
-                        alt="poster"
-                    />
-                </div>
-                <p>{post?.content}</p>
-            </div>
-            {/* <!-- post body ends --> */}
-
-            {/* <!-- post actions --> */}
-            <div className="flex items-center justify-between py-6 lg:px-10 lg:py-8">
-                {/* <!-- Like Button --> */}
-                <button
-                    className="flex-center gap-2 text-xs font-bold text-[#B8BBBF] hover:text-white lg:text-sm"
-                >
-                    <img src={thumbIcon} alt="Like" />
-                    <span>Like ({post?.comments?.length})</span>
-                </button>
-
-                {/* <!-- Comment Button --> */}
-                <button
-                    className="icon-btn space-x-2 px-6 py-3 text-xs lg:px-12 lg:text-sm"
-                >
-                    <img src={commentIcon} alt="Comment" />
-                    <span>Comment ({post?.comments?.length})</span>
-                </button>
-                {/* <!-- Share Button --> */}
-
-                {/* <!-- Like Button --> */}
-                <button
-                    className="flex-center gap-2 text-xs font-bold text-[#B8BBBF] hover:text-white lg:text-sm"
-                >
-                    <img src={shareIcon} alt="Share" />
-                    <span>Share</span>
-                </button>
-            </div>
-            {/* <!-- post actions  --> */}
-
-            {/* <!-- comment section --> */}
-            <div>
-                {/* <!-- comment input box --> */}
-                <div className="flex-center mb-3 gap-2 lg:gap-4">
-                    <img
-                        className="max-w-7 max-h-7 rounded-full lg:max-h-[34px] lg:max-w-[34px]"
-                        src={dummyAvatar}
-                        alt="avatar"
-                    />
-
-                    <div className="flex-1">
-                        <input
-                            type="text"
-                            className="h-8 w-full rounded-full bg-lighterDark px-4 text-xs focus:outline-none sm:h-[38px]"
-                            name="post"
-                            id="post"
-                            placeholder="What's on your mind?"
-                        />
-                    </div>
-                </div>
-                {/* <!-- comment filter button --> */}
-                <div className="mt-4">
-                    <button className="text-gray-300 max-md:text-sm">
-                        All Comment ▾
-                    </button>
-                </div>
-                {/* <!-- comments --> */}
-                <div className="space-y-4 divide-y divide-lighterDark pl-2 lg:pl-3">
-                    {/* <!-- single comment --> */}
-                    <div className="flex items-center gap-3 pt-4">
+        <>
+            <h4 className="mt-6 text-xl lg:mt-8 lg:text-2xl">Your Posts</h4>
+            <article className="card mt-6 lg:mt-8">
+                {/* <!-- post header --> */}
+                <header className="flex items-center justify-between gap-4">
+                    {/* <!-- author info --> */}
+                    <div className="flex items-center gap-3">
                         <img
-                            className="max-w-6 max-h-6 rounded-full"
-                            src={dummyAvatar}
-                            alt="avatar"
+                            className="max-w-10 max-h-10 rounded-full lg:max-h-[58px] lg:max-w-[58px]"
+                            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}` || dummyAvatar}
+                            alt={fullName}
                         />
                         <div>
-                            <div className="flex gap-1 text-xs lg:text-sm">
-                                <span>Tapas Adhikari: </span>
-                                <span>Great Sumit Saha dada ❤</span>
+                            <h6 className="text-lg lg:text-xl">{fullName}</h6>
+                            <div className="flex items-center gap-1.5">
+                                <img src={timeIcon} alt="time" />
+                                <span className="text-sm text-gray-400 lg:text-base">12 min ago</span>
                             </div>
                         </div>
                     </div>
-                    {/* <!-- single comment ends --> */}
+                    {/* <!-- author info ends --> */}
 
-                    {/* <!-- single comment --> */}
-                    <div className="flex items-center gap-3 pt-4">
+                    {/* <!-- action dot --> */}
+                    <div className="relative">
+                        <button>
+                            <img src={threeDotIcon} alt="3dots of Action" />
+                        </button>
+
+                        {/* <!-- Action Menus Popup --> */}
+                        <div className="action-modal-container">
+                            <button className="action-menu-item hover:text-lwsGreen">
+                                <img src={editIcon} alt="Edit" />
+                                Edit
+                            </button>
+                            <button className="action-menu-item hover:text-red-500">
+                                <img src={deleteIcon} alt="Delete" />
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                    {/* <!-- action dot ends --> */}
+                </header>
+                {/* <!-- post header ends --> */}
+
+                {/* <!-- post body --> */}
+                <div className="border-b border-[#3F3F3F] py-4 lg:py-5 lg:text-xl">
+                    {/* <!-- If Post has Image, Render this block --> */}
+                    <div className="flex items-center justify-center overflow-hidden">
                         <img
-                            className="max-w-6 max-h-6 rounded-full"
+                            className="max-w-full"
+                            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${post?.image}`}
+                            alt="poster"
+                        />
+                    </div>
+                    <p>{post?.content}</p>
+                </div>
+                {/* <!-- post body ends --> */}
+
+                {/* <!-- post actions --> */}
+                <div className="flex items-center justify-between py-6 lg:px-10 lg:py-8">
+                    {/* <!-- Like Button --> */}
+                    <button
+                        className="flex-center gap-2 text-xs font-bold text-[#B8BBBF] hover:text-white lg:text-sm"
+                    >
+                        <img src={thumbIcon} alt="Like" />
+                        <span>Like ({post?.comments?.length})</span>
+                    </button>
+
+                    {/* <!-- Comment Button --> */}
+                    <button
+                        className="icon-btn space-x-2 px-6 py-3 text-xs lg:px-12 lg:text-sm"
+                    >
+                        <img src={commentIcon} alt="Comment" />
+                        <span>Comment ({post?.comments?.length})</span>
+                    </button>
+                    {/* <!-- Share Button --> */}
+
+                    {/* <!-- Like Button --> */}
+                    <button
+                        className="flex-center gap-2 text-xs font-bold text-[#B8BBBF] hover:text-white lg:text-sm"
+                    >
+                        <img src={shareIcon} alt="Share" />
+                        <span>Share</span>
+                    </button>
+                </div>
+                {/* <!-- post actions  --> */}
+
+                {/* <!-- comment section --> */}
+                <div>
+                    {/* <!-- comment input box --> */}
+                    <div className="flex-center mb-3 gap-2 lg:gap-4">
+                        <img
+                            className="max-w-7 max-h-7 rounded-full lg:max-h-[34px] lg:max-w-[34px]"
                             src={dummyAvatar}
                             alt="avatar"
                         />
-                        <div>
-                            <div className="flex gap-1 text-xs lg:text-sm">
-                                <span>Sumit Saha: </span>
-                                <span>Great Sumit Saha dada ❤</span>
-                            </div>
+
+                        <div className="flex-1">
+                            <input
+                                type="text"
+                                className="h-8 w-full rounded-full bg-lighterDark px-4 text-xs focus:outline-none sm:h-[38px]"
+                                name="post"
+                                id="post"
+                                placeholder="What's on your mind?"
+                            />
                         </div>
                     </div>
-                    {/* <!-- single comment ends --> */}
+                    {/* <!-- comment filter button --> */}
+                    <div className="mt-4">
+                        <button className="text-gray-300 max-md:text-sm">
+                            All Comment ▾
+                        </button>
+                    </div>
+                    {/* <!-- comments --> */}
+                    <div className="space-y-4 divide-y divide-lighterDark pl-2 lg:pl-3">
+                        {/* <!-- single comment --> */}
+                        <div className="flex items-center gap-3 pt-4">
+                            <img
+                                className="max-w-6 max-h-6 rounded-full"
+                                src={dummyAvatar}
+                                alt="avatar"
+                            />
+                            <div>
+                                <div className="flex gap-1 text-xs lg:text-sm">
+                                    <span>Tapas Adhikari: </span>
+                                    <span>Great Sumit Saha dada ❤</span>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <!-- single comment ends --> */}
+
+                        {/* <!-- single comment --> */}
+                        <div className="flex items-center gap-3 pt-4">
+                            <img
+                                className="max-w-6 max-h-6 rounded-full"
+                                src={dummyAvatar}
+                                alt="avatar"
+                            />
+                            <div>
+                                <div className="flex gap-1 text-xs lg:text-sm">
+                                    <span>Sumit Saha: </span>
+                                    <span>Great Sumit Saha dada ❤</span>
+                                </div>
+                            </div>
+                        </div>
+                        {/* <!-- single comment ends --> */}
+                    </div>
+                    {/* <!-- comments ends --> */}
                 </div>
-                {/* <!-- comments ends --> */}
-            </div>
-            {/* <!-- comment section ends --> */}
-        </article>
+                {/* <!-- comment section ends --> */}
+            </article>
+        </>
     );
 };
 
