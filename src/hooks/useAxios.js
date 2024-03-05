@@ -21,7 +21,6 @@ const useAxios = () => {
             (error) => Promise.reject(error)
         );
 
-
         // add a response interceptor
         const responseIntercept = api.interceptors.response.use(
             (response) => response,
@@ -58,7 +57,7 @@ const useAxios = () => {
             api.interceptors.request.eject(requestIntercept);
             api.interceptors.response.eject(responseIntercept);
         }
-    }, [auth, setAuth, auth.authToken])
+    }, [auth.authToken])
 
     return { api }
 }
