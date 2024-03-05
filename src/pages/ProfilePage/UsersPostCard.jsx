@@ -8,7 +8,7 @@ import commentIcon from '../../assets/icons/comment.svg';
 import shareIcon from '../../assets/icons/share.svg';
 import articleThumbnail from '../../assets/images/poster.png';
 
-const UsersPostCard = ({ user, posts }) => {
+const UsersPostCard = ({ user, post }) => {
     const fullName = user?.firstName + " " + user?.lastName;
     return (
         <article className="card mt-6 lg:mt-8">
@@ -25,8 +25,7 @@ const UsersPostCard = ({ user, posts }) => {
                         <h6 className="text-lg lg:text-xl">{fullName}</h6>
                         <div className="flex items-center gap-1.5">
                             <img src={timeIcon} alt="time" />
-                            <span className="text-sm text-gray-400 lg:text-base"
-                            >12 min ago</span>
+                            <span className="text-sm text-gray-400 lg:text-base">12 min ago</span>
                         </div>
                     </div>
                 </div>
@@ -60,20 +59,11 @@ const UsersPostCard = ({ user, posts }) => {
                 <div className="flex items-center justify-center overflow-hidden">
                     <img
                         className="max-w-full"
-                        src={articleThumbnail}
+                        src={`${import.meta.env.VITE_SERVER_BASE_URL}/${post?.image}`}
                         alt="poster"
                     />
                 </div>
-                <p>
-                    Grateful for the incredible experience of serving as the President
-                    of the Grand Jury board for this years Digital Marketing Award
-                    organized by Bangladesh Brand Forum. Judging the best digital
-                    marketing campaigns was not just a responsibility but a journey of
-                    appreciation for innovation and creativity. The judging process,
-                    ensuring transparency, brought to light so many beautiful
-                    campaigns. Cheers to the dynamic world of digital marketing!
-                    sdfasd asdca sdfa sdca sdfa
-                </p>
+                <p>{post?.content}</p>
             </div>
             {/* <!-- post body ends --> */}
 
@@ -84,7 +74,7 @@ const UsersPostCard = ({ user, posts }) => {
                     className="flex-center gap-2 text-xs font-bold text-[#B8BBBF] hover:text-white lg:text-sm"
                 >
                     <img src={thumbIcon} alt="Like" />
-                    <span>Like</span>
+                    <span>Like ({post?.comments?.length})</span>
                 </button>
 
                 {/* <!-- Comment Button --> */}
@@ -92,7 +82,7 @@ const UsersPostCard = ({ user, posts }) => {
                     className="icon-btn space-x-2 px-6 py-3 text-xs lg:px-12 lg:text-sm"
                 >
                     <img src={commentIcon} alt="Comment" />
-                    <span>Comment(2)</span>
+                    <span>Comment ({post?.comments?.length})</span>
                 </button>
                 {/* <!-- Share Button --> */}
 
