@@ -11,9 +11,10 @@ import { AuthContext } from '../Contexts/AuthContext';
 const Navbar = () => {
     const { auth } = useContext(AuthContext);
     const navigate = useNavigate();
-    const navigateToProfile=()=>{
+    const navigateToProfile = () => {
         navigate('/me')
     }
+    console.log(auth?.user?.avatar);
     return (
         <nav className="sticky top-0 z-50 border-b border-[#3F3F3F] bg-[#1E1F24] py-4">
             <div className="container flex flex-col items-center justify-between gap-6 sm:flex-row">
@@ -34,7 +35,7 @@ const Navbar = () => {
                     <button className="flex-center !ml-8 gap-3" onClick={navigateToProfile}>
                         <span className="text-lg font-medium lg:text-xl">{auth?.user?.firstName}</span>
                         <img className="max-h-[32px] max-w-[32px] lg:max-h-[44px] lg:max-w-[44px] rounded-full"
-                            src={auth?.user?.avatar} alt="User Avatar" />
+                            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${auth?.user?.avatar}`} alt="User Avatar" />
                     </button>
                 </div>
 

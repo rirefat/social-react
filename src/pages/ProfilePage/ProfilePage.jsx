@@ -23,7 +23,7 @@ const ProfilePage = () => {
             } catch (error) {
                 console.log(error);
                 setError(error);
-            }finally{
+            } finally {
                 setLoading(false);
             }
         }
@@ -31,16 +31,14 @@ const ProfilePage = () => {
         fetchProfile();
     }, []);
 
-    console.log(posts)
-
     const fullName = user?.firstName + " " + user?.lastName;
     const email = user?.email;
     const bio = user?.bio;
     const avatar = user?.avatar;
 
 
-    if(loading) return <p className="text-center mt-10 text-green-400 text-2xl">Fetching user data...</p>
-    if(error) return <p className="text-center">Error occured fetching you data!!</p>
+    if (loading) return <p className="text-center mt-10 text-slate-400 text-2xl">Fetching user data...</p>
+    if (error) return <p className="text-center text-red-400">Error occured fetching you data!!</p>
 
     return (
         <main className="mx-auto max-w-[1020px] py-8">
@@ -52,8 +50,8 @@ const ProfilePage = () => {
                         className="relative mb-8 max-h-[180px] max-w-[180px] rounded-full lg:mb-11 lg:max-h-[218px] lg:max-w-[218px]"
                     >
                         <img
-                            className="max-w-full"
-                            src={dummyAvatar}
+                            className="max-w-full rounded-full"
+                            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}` || dummyAvatar}
                             alt={fullName}
                         />
 
@@ -89,8 +87,8 @@ const ProfilePage = () => {
 
                 {/* <!-- post  --> */}
                 <UsersPostCard
-                    fullName={fullName}
-                    avatar={avatar}
+                    user={user}
+                    posts={posts}
                 />
                 {/* <!-- post ends --> */}
 

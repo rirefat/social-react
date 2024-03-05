@@ -9,9 +9,9 @@ const App = () => {
 
   return (
     <AuthContext.Provider value={{auth, setAuth}}>
-      <Navbar />
+      {/* <Navbar /> */}
       <Outlet />
-      <Footer />
+      {/* <Footer /> */}
     </AuthContext.Provider>
   );
 };

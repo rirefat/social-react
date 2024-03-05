@@ -13,10 +13,10 @@ const routers = createBrowserRouter([
         element: <App />,
         errorElement: <ErrorPage />,
         children: [
-            { index: true, element: <Homepage /> },
+            { index: true, element: <PrivateRouters><Homepage /></PrivateRouters> },
             { path: 'registration', element: <Registration /> },
             { path: 'login', element: <Login /> },
-            { path: 'me', element: <PrivateRouters> <ProfilePage/> </PrivateRouters> },
+            { path: 'me', element: <PrivateRouters> <ProfilePage /> </PrivateRouters> },
         ]
     }
 ])

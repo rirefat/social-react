@@ -8,7 +8,8 @@ import commentIcon from '../../assets/icons/comment.svg';
 import shareIcon from '../../assets/icons/share.svg';
 import articleThumbnail from '../../assets/images/poster.png';
 
-const UsersPostCard = ({ fullName, avatar }) => {
+const UsersPostCard = ({ user, posts }) => {
+    const fullName = user?.firstName + " " + user?.lastName;
     return (
         <article className="card mt-6 lg:mt-8">
             {/* <!-- post header --> */}
@@ -17,7 +18,7 @@ const UsersPostCard = ({ fullName, avatar }) => {
                 <div className="flex items-center gap-3">
                     <img
                         className="max-w-10 max-h-10 rounded-full lg:max-h-[58px] lg:max-w-[58px]"
-                        src={dummyAvatar}
+                        src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}` || dummyAvatar}
                         alt={fullName}
                     />
                     <div>
