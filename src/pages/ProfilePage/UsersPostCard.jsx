@@ -7,9 +7,11 @@ import thumbIcon from '../../assets/icons/like.svg';
 import commentIcon from '../../assets/icons/comment.svg';
 import shareIcon from '../../assets/icons/share.svg';
 import articleThumbnail from '../../assets/images/poster.png';
+import { useProfile } from '../../hooks/useProfile';
 
-const UsersPostCard = ({ user, post }) => {
-    const fullName = user?.firstName + " " + user?.lastName;
+const UsersPostCard = ({post}) => {
+    const {state, dispatch}=useProfile();
+    const fullName = state?.user?.firstName + " " + state?.user?.lastName;
     return (
         <>
             <h4 className="mt-6 text-xl lg:mt-8 lg:text-2xl">Your Posts</h4>
@@ -20,7 +22,7 @@ const UsersPostCard = ({ user, post }) => {
                     <div className="flex items-center gap-3">
                         <img
                             className="max-w-10 max-h-10 rounded-full lg:max-h-[58px] lg:max-w-[58px]"
-                            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}` || dummyAvatar}
+                            src={`${import.meta.env.VITE_SERVER_BASE_URL}/${state?.user.avatar}` || dummyAvatar}
                             alt={fullName}
                         />
                         <div>

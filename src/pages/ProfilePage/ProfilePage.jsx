@@ -7,13 +7,17 @@ import useAxios from "../../hooks/useAxios";
 import Bio from "./Bio";
 import { ProfileContext } from "../../components/Contexts/ProfileContext";
 import { actions } from "../../actions";
+import { useProfile } from "../../hooks/useProfile";
 
 const ProfilePage = () => {
     // const [user, setUser] = useState({});
     // const [posts, setPosts] = useState([]);
     // const [loading, setLoading] = useState(false);
     // const [error, setError] = useState(null);
-    const { state, dispatch } = useContext(ProfileContext);
+
+
+    // const { state, dispatch } = useContext(ProfileContext);
+    const { state, dispatch } = useProfile();
 
     const { auth } = useContext(AuthContext);
     const { api } = useAxios();
@@ -45,11 +49,6 @@ const ProfilePage = () => {
         fetchProfile();
     }, []);
 
-    const fullName = state?.user?.firstName + " " + state?.user?.lastName;
-    const email = state?.user?.email;
-    const bio = state?.user?.bio;
-
-
     if (state?.loading) return <p className="text-center mt-10 text-slate-400 text-2xl">Fetching user data...</p>
     if (state?.error) return <p className="text-center text-red-400">Error occured fetching you data!!</p>
 
@@ -57,17 +56,14 @@ const ProfilePage = () => {
         <main className="mx-auto max-w-[1020px] py-8">
             <div className="container">
                 {/* <!-- profile info --> */}
-                {/* <Bio user={state?.user} /> */}
-                <p>welcome {fullName}</p>
-                {/* <!-- end profile info --> */}
+                <Bio />
 
                 {/* <!-- post  --> */}
                 {
-                    // state?.posts.map((post) => (
-                    //     <UsersPostCard key={post.id} post={post} user={user} />
-                    // ))
+                    state?.posts.map((post) => (
+                        <UsersPostCard key={post.id} post={post} />
+                    ))
                 }
-                {/* <!-- post ends --> */}
 
             </div>
         </main>

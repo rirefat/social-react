@@ -1,10 +1,13 @@
 import dummyAvatar from '../../assets/images/dummy-avatar.png';
 import editIcon from '../../assets/icons/edit.svg';
+import { useProfile } from '../../hooks/useProfile';
 
-const Bio = ({ user }) => {
-    const fullName = user?.firstName + " " + user?.lastName;
-    const email = user?.email;
-    const bio = user?.bio;
+const Bio = () => {
+    const {state, dispatch} = useProfile();
+    const fullName = state?.user?.firstName + " " + state?.user?.lastName;
+    const email = state?.user?.email;
+    const bio = state?.user?.bio;
+
     return (
         <div className="flex flex-col items-center py-8 text-center">
             {/* <!-- profile image --> */}
@@ -13,7 +16,7 @@ const Bio = ({ user }) => {
             >
                 <img
                     className="max-w-full rounded-full"
-                    src={`${import.meta.env.VITE_SERVER_BASE_URL}/${user.avatar}` || dummyAvatar}
+                    src={`${import.meta.env.VITE_SERVER_BASE_URL}/${state?.user.avatar}` || dummyAvatar}
                     alt={fullName}
                 />
 
