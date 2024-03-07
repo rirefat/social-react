@@ -12,7 +12,6 @@ const Bio = () => {
 
     const [bio, setBio] = useState(state?.user?.bio);
     const [editBio, setEditBio] = useState(false);
-    const [error, setError] = useState(false);
 
     const fullName = state?.user?.firstName + " " + state?.user?.lastName;
     const email = state?.user?.email;
@@ -21,12 +20,9 @@ const Bio = () => {
         dispatch({ type: actions.profile.DATA_FETCHING });
 
         try {
-            const response = await api.patch(
-                `${import.meta.env.VITE_SERVER_BASE_URL}/profile/${state?.user?.id
-                }`,
-                { bio }
-            );
+            const response = await api.patch(`${import.meta.env.VITE_SERVER_BASE_URL}/profile/${state?.user?.id}`, { bio });
 
+            console.log(response.data)
             if (response.status === 200) {
                 dispatch({
                     type: actions.profile.USER_DATA_EDITED,
