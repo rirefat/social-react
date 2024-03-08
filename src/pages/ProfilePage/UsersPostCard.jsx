@@ -14,7 +14,7 @@ const UsersPostCard = ({post}) => {
     const fullName = state?.user?.firstName + " " + state?.user?.lastName;
     return (
         <>
-            <h4 className="mt-6 text-xl lg:mt-8 lg:text-2xl">Your Posts</h4>
+            
             <article className="card mt-6 lg:mt-8">
                 {/* <!-- post header --> */}
                 <header className="flex items-center justify-between gap-4">

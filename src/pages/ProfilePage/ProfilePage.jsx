@@ -7,13 +7,14 @@ import useAxios from "../../hooks/useAxios";
 import Bio from "./Bio";
 import { actions } from "../../actions";
 import { useProfile } from "../../hooks/useProfile";
+import PostCard from "../../components/PostCard/PostCard";
 
 const ProfilePage = () => {
     const { state, dispatch } = useProfile();
 
     const { auth } = useContext(AuthContext);
     const { api } = useAxios();
-    
+
     useEffect(() => {
         dispatch({ type: actions.profile.DATA_FETCHING });
         const fetchProfile = async () => {
@@ -27,8 +28,8 @@ const ProfilePage = () => {
                 }
             } catch (error) {
                 console.log(error);
-                dispatch({type: actions.profile.DATA_FETCH_ERROR, error: err.message})
-            } 
+                dispatch({ type: actions.profile.DATA_FETCH_ERROR, error: err.message })
+            }
         }
 
         fetchProfile();
@@ -44,9 +45,11 @@ const ProfilePage = () => {
                 <Bio />
 
                 {/* <!-- post  --> */}
+                <h4 className="mt-6 text-xl lg:mt-8 lg:text-2xl">Your Posts</h4>
                 {
-                    state?.posts.map((post) => (
-                        <UsersPostCard key={post.id} post={post} />
+                    state?.posts && state?.posts.map((post) => (
+                        // <UsersPostCard key={post.id} post={post} />
+                        <PostCard key={post.id} post={post} />
                     ))
                 }
 
