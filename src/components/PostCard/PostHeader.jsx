@@ -4,8 +4,9 @@ import editIcon from '../../assets/icons/edit.svg';
 import deleteIcon from '../../assets/icons/delete.svg';
 
 import { useProfile } from '../../hooks/useProfile';
+import { getDateDifferenceFromNow } from '../../utils';
 
-const PostHeader = () => {
+const PostHeader = ({post}) => {
     const { state, dispatch } = useProfile();
 
     return (
@@ -21,7 +22,7 @@ const PostHeader = () => {
                     <h6 className="text-lg lg:text-xl">{state?.user?.firstName} {" "} {state?.user?.lastName}</h6>
                     <div className="flex items-center gap-1.5">
                         <img src={timeIcon} alt="time" />
-                        <span className="text-sm text-gray-400 lg:text-base">12 min ago</span>
+                        <span className="text-sm text-gray-400 lg:text-base">{getDateDifferenceFromNow(post?.createAt)}</span>
                     </div>
                 </div>
             </div>
