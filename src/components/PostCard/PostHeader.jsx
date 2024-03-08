@@ -9,7 +9,6 @@ import { useState } from 'react';
 
 const PostHeader = ({ post }) => {
     const [showActions, setShowActions] = useState(false);
-    const {state} = useProfile();
 
     return (
         <header className="flex items-center justify-between gap-4">
@@ -17,7 +16,7 @@ const PostHeader = ({ post }) => {
             <div className="flex items-center gap-3">
                 <img
                     className="max-w-10 max-h-10 rounded-full lg:max-h-[58px] lg:max-w-[58px]"
-                    src={`${import.meta.env.VITE_SERVER_BASE_URL}/${state?.user?.avatar}`}
+                    src={`${import.meta.env.VITE_SERVER_BASE_URL}/${post?.author?.avatar}`}
                     alt={post?.author?.name}
                 />
                 <div>

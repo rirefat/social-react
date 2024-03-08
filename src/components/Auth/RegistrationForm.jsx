@@ -1,29 +1,47 @@
 import { useForm } from "react-hook-form";
 import InputField from "../InputField/InputField";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../Contexts/AuthContext";
+import axios from "axios";
 
 const RegistrationForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-    const {auth, setAuth} = useContext(AuthContext);
 
-    const formSubmit = (data) => {
-        console.log(data);
-        setAuth({auth})
-        navigate('/login')
+    const formSubmit = async (formData) => {
+        try {
+            let response = await axios.post(`${import.meta.env.VITE_SERVER_BASE_URL}/auth/register`, formData);
+
+            if (response.status === 201) {
+                navigate("/login");
+            }
+        } catch (error) {
+            console.error(error);
+            setError("root.random", {
+                type: "random",
+                message: `Something went wrong: ${error.message}`,
+            });
+        }
+        console.log(formData)
     }
 
     return (
         <form onSubmit={handleSubmit(formSubmit)} className="border-b border-[#3F3F3F] pb-10 lg:pb-[30px]">
-            <InputField label={"name"} error={errors.name}>
+            <InputField label={"First Name"} error={errors.firstName}>
                 <input
                     className="auth-input"
-                    {...register("name", { required: "Your name is required" },)}
+                    {...register("firstName", { required: "Your first name is required" },)}
                     type="text"
-                    name="name"
-                    id="name"
+                    name="firstName"
+                    id="firstName"
+                />
+            </InputField>
+            <InputField label={"Last Name"} error={errors.lastName}>
+                <input
+                    className="auth-input"
+                    {...register("lastName", { required: "Your last name is required" },)}
+                    type="text"
+                    name="lastName"
+                    id="lastName"
                 />
             </InputField>
             <InputField label={"email"} error={errors.email}>
@@ -38,22 +56,12 @@ const RegistrationForm = () => {
             <InputField label={"password"} error={errors.password}>
                 <input
                     className="auth-input"
-                    {...register("password", { required: "Your password is required", minLength:8 })}
+                    {...register("password", { required: "Your password is required", minLength: 8 })}
                     type="text"
                     name="password"
                     id="password"
                 />
             </InputField>
-            <InputField label={"confirm password"} error={errors.confirm_password}>
-                <input
-                    className="auth-input"
-                    {...register("confirm_password", { required: "Confirm your password", minLength:8 })}
-                    type="text"
-                    name="confirm_password"
-                    id="confirm_password"
-                />
-            </InputField>
-
 
             <button
                 className="auth-input bg-lwsGreen font-bold text-deepDark transition-all hover:opacity-90"
