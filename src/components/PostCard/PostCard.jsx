@@ -9,12 +9,13 @@ import PostComments from './PostComments';
 
 const PostCard = ({post}) => {
     const {state, dispatch}=useProfile();
+    
     return (
         <article className="card mt-6 lg:mt-8">
             <PostHeader post={post}/>
             <PostBody post={post}/>
             <PostActions post={post}/>
-            <PostComments/>
+            <PostComments comments={post?.comments}/>
         </article>
     );
 };

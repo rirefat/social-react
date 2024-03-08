@@ -1,13 +1,18 @@
+import { useState } from 'react';
 import dummyAvatar from '../../assets/images/dummy-avatar.png';
+import { useProfile } from '../../hooks/useProfile';
 
-const PostComments = () => {
+const PostComments = ({ comments }) => {
+    const { state } = useProfile();
+    const [showComments, setShowComments] = useState(false);
+
     return (
         <div>
             {/* <!-- comment input box --> */}
             <div className="flex-center mb-3 gap-2 lg:gap-4">
                 <img
                     className="max-w-7 max-h-7 rounded-full lg:max-h-[34px] lg:max-w-[34px]"
-                    src={dummyAvatar}
+                    src={`${import.meta.env.VITE_SERVER_BASE_URL}/${state?.user?.avatar}`}
                     alt="avatar"
                 />
 
@@ -23,44 +28,39 @@ const PostComments = () => {
             </div>
             {/* <!-- comment filter button --> */}
             <div className="mt-4">
-                <button className="text-gray-300 max-md:text-sm">
-                    All Comment ▾
-                </button>
+                {
+                    comments.length > 0 &&
+                    <button onClick={() => setShowComments(prevState => !prevState)} className="text-gray-300 max-md:text-sm">
+                        {showComments ? "Hide All ▲" : "All Comment ▾"}
+                    </button>
+                }
             </div>
-            {/* <!-- comments --> */}
-            <div className="space-y-4 divide-y divide-lighterDark pl-2 lg:pl-3">
-                {/* <!-- single comment --> */}
-                <div className="flex items-center gap-3 pt-4">
-                    <img
-                        className="max-w-6 max-h-6 rounded-full"
-                        src={dummyAvatar}
-                        alt="avatar"
-                    />
-                    <div>
-                        <div className="flex gap-1 text-xs lg:text-sm">
-                            <span>Tapas Adhikari: </span>
-                            <span>Great Sumit Saha dada ❤</span>
-                        </div>
-                    </div>
-                </div>
-                {/* <!-- single comment ends --> */}
 
-                {/* <!-- single comment --> */}
-                <div className="flex items-center gap-3 pt-4">
-                    <img
-                        className="max-w-6 max-h-6 rounded-full"
-                        src={dummyAvatar}
-                        alt="avatar"
-                    />
-                    <div>
-                        <div className="flex gap-1 text-xs lg:text-sm">
-                            <span>Sumit Saha: </span>
-                            <span>Great Sumit Saha dada ❤</span>
-                        </div>
-                    </div>
+            {/* <!-- comments --> */}
+            {
+                comments.length > 0 && showComments &&
+                <div className="space-y-4 divide-y divide-lighterDark pl-2 lg:pl-3">
+                    {/* <!-- single comment --> */}
+                    {
+                        comments.map((comment) => (
+                            <div key={comment.id} className="flex items-center gap-3 pt-4">
+                                <img
+                                    className="max-w-6 max-h-6 rounded-full"
+                                    src={`${import.meta.env.VITE_SERVER_BASE_URL}/${comment?.author?.avatar}`}
+                                    alt="avatar"
+                                />
+                                <div>
+                                    <div className="flex gap-1 text-xs lg:text-sm">
+                                        <span>{comment?.author?.name}: </span>
+                                        <span>{comment?.comment}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                    {/* <!-- single comment ends --> */}
                 </div>
-                {/* <!-- single comment ends --> */}
-            </div>
+            }
             {/* <!-- comments ends --> */}
         </div>
     );
