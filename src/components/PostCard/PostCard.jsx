@@ -7,15 +7,15 @@ import PostBody from './PostBody';
 import PostActions from './PostActions';
 import PostComments from './PostComments';
 
-const PostCard = ({post}) => {
-    const {state, dispatch}=useProfile();
-    
+const PostCard = ({ post }) => {
+    const { state, dispatch } = useProfile();
+
     return (
         <article className="card mt-6 lg:mt-8">
-            <PostHeader post={post}/>
-            <PostBody post={post}/>
-            <PostActions post={post}/>
-            <PostComments comments={post?.comments}/>
+            <PostHeader post={post} />
+            <PostBody post={post} />
+            <PostActions post={post} />
+            <PostComments post={post} />
         </article>
     );
 };

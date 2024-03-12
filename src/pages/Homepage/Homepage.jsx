@@ -46,8 +46,8 @@ const Homepage = () => {
 
 
     return (
-        <main class="mx-auto max-w-[1020px] py-8">
-            <div class="container">
+        <main className="mx-auto max-w-[1020px] py-8">
+            <div className="container">
                 {/* Crate new post area */}
                 {/* <div className="card">
                 <div className="flex-center mb-3 gap-2 lg:gap-4">

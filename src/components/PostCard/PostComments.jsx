@@ -1,10 +1,32 @@
 import { useState } from 'react';
-import dummyAvatar from '../../assets/images/dummy-avatar.png';
 import { useProfile } from '../../hooks/useProfile';
+import useAxios from '../../hooks/useAxios';
 
-const PostComments = ({ comments }) => {
+const PostComments = ({ post }) => {
     const { state } = useProfile();
-    const [showComments, setShowComments] = useState(false);
+    const { api } = useAxios();
+
+    const [showComments, setShowComments] = useState(true);
+    const [comments, setComments] = useState(post?.comments);
+    const [comment, setComment] = useState("");
+
+
+    const addComment = async (event) => {
+        const keyCode = event.keyCode;
+
+        if (keyCode === 13) {
+            try {
+                const response = await api.patch(`${import.meta.env.VITE_SERVER_BASE_URL}/posts/${post.id}/comment`, { comment });
+
+                if (response.status === 200) {
+                    setComments([...response.data.comments]);
+                    setComment("")
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
 
     return (
         <div>
@@ -23,6 +45,9 @@ const PostComments = ({ comments }) => {
                         name="post"
                         id="post"
                         placeholder="What's on your mind?"
+                        value={comment}
+                        onChange={(event) => setComment(event.target.value)}
+                        onKeyDown={(event) => addComment(event)}
                     />
                 </div>
             </div>
@@ -31,7 +56,7 @@ const PostComments = ({ comments }) => {
                 {
                     comments.length > 0 &&
                     <button onClick={() => setShowComments(prevState => !prevState)} className="text-gray-300 max-md:text-sm">
-                        {showComments ? "Hide All ▲" : "All Comment ▾"}
+                        {showComments ? "Hide All" : "All Comment ▾"}
                     </button>
                 }
             </div>
