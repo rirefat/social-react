@@ -45,7 +45,7 @@ const PostHeader = ({ post }) => {
                         </button>
                         <button className="action-menu-item hover:text-red-500">
                             <img src={deleteIcon} alt="Delete" />
-                            Delete
+                            Delete 
                         </button>
                     </div>
                 }
