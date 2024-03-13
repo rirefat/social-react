@@ -1,12 +1,12 @@
-import { useEffect, useReducer } from "react";
-import { initialState, postReducer } from "../../reducers/postReducer";
+import { useEffect } from "react";
 import useAxios from "../../hooks/useAxios";
 import { actions } from "../../actions";
 import PostCard from "../../components/PostCard/PostCard";
+import usePost from "../../hooks/usePost";
 
 
 const Homepage = () => {
-    const [state, dispatch] = useReducer(postReducer, initialState);
+    const { state, dispatch } = usePost();
     const { api } = useAxios();
 
     useEffect(() => {
